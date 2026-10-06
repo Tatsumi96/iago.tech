@@ -1,0 +1,48 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "process": "Our Approach",
+    "contact": "Contact",
+    "cta": "View Project"
+  },
+  "Hero": {
+    "title": "Designed to move forward.",
+    "subtitle": "i'ago Tech designs bespoke showcase websites and web solutions to propel your business. We optimize your online presence with precision.",
+    "cta": "Get Started",
+    "secondaryCta": "Discover our services"
+  },
+  "Services": {
+    "title": "Clear tools, made to be used.",
+    "seo": "SEO Optimization",
+    "seoDesc": "Perfect SEO from A to Z. We push your site to the top of search results with proven strategies and flawless code.",
+    "refonte": "Website Redesign",
+    "refonteDesc": "Modernize your brand image with a complete website redesign to improve user experience and performance.",
+    "dev": "Web Development",
+    "devDesc": "Creation of robust, fast, and scalable web applications tailored to your specific needs."
+  },
+  "About": {
+    "title": "Who are we?",
+    "desc1": "i'ago Tech is an IT services company based in Madagascar, Antsirabe. We are passionate about creating innovative technological solutions that make a real impact.",
+    "desc2": "Our philosophy: One blue, one ink. Blue brings trust, ink brings precision. The rest is order."
+  },
+  "Process": {
+    "title": "Our process",
+    "step1": "Analysis",
+    "step1Desc": "We study your needs and define a tailored strategy.",
+    "step2": "Design",
+    "step2Desc": "Creating a clear, modern, and user-centric interface.",
+    "step3": "Development",
+    "step3Desc": "Clean code (SOLID), fast, and optimized for search engines.",
+    "step4": "Deployment",
+    "step4Desc": "Delivered on time, with rigorous follow-up to ensure success."
+  },
+  "Contact": {
+    "title": "Ready to start?",
+    "subtitle": "Contact us to discuss your next project.",
+    "phone": "+261 32 86 456 74",
+    "email": "contact@iago.tech",
+    "location": "Antsirabe, Madagascar"
+  }
+}

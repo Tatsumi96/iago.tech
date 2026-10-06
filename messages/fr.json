@@ -1,0 +1,48 @@
+{
+  "Navigation": {
+    "home": "Accueil",
+    "services": "Services",
+    "about": "À propos",
+    "process": "Notre approche",
+    "contact": "Contact",
+    "cta": "Voir le projet"
+  },
+  "Hero": {
+    "title": "Pensé pour avancer.",
+    "subtitle": "i'ago Tech conçoit des sites vitrines et des solutions web sur mesure pour propulser votre entreprise. Nous optimisons votre présence en ligne avec précision.",
+    "cta": "Commencer",
+    "secondaryCta": "Découvrir nos services"
+  },
+  "Services": {
+    "title": "Des outils clairs, faits pour être utilisés.",
+    "seo": "Optimisation SEO",
+    "seoDesc": "Un SEO parfait de A à Z. Nous propulsons votre site en haut des résultats de recherche grâce à des stratégies éprouvées et un code impeccable.",
+    "refonte": "Refonte de Site",
+    "refonteDesc": "Modernisez votre image avec une refonte complète de votre site web pour améliorer l'expérience utilisateur et les performances.",
+    "dev": "Développement Web",
+    "devDesc": "Création d'applications web robustes, rapides et évolutives adaptées à vos besoins spécifiques."
+  },
+  "About": {
+    "title": "Qui sommes-nous ?",
+    "desc1": "i'ago Tech est une ESN basée à Madagascar, Antsirabe. Nous sommes passionnés par la création de solutions technologiques innovantes qui ont un réel impact.",
+    "desc2": "Notre philosophie : Un bleu, une encre. Le bleu apporte la confiance, l'encre apporte la précision. Le reste est de l'ordre."
+  },
+  "Process": {
+    "title": "Notre processus",
+    "step1": "Analyse",
+    "step1Desc": "Nous étudions vos besoins et définissons une stratégie sur mesure.",
+    "step2": "Conception",
+    "step2Desc": "Création d'une interface claire, moderne et centrée sur l'utilisateur.",
+    "step3": "Développement",
+    "step3Desc": "Un code propre (SOLID), rapide et optimisé pour le référencement.",
+    "step4": "Déploiement",
+    "step4Desc": "Livré dans les délais, avec un suivi rigoureux pour garantir le succès."
+  },
+  "Contact": {
+    "title": "Prêt à démarrer ?",
+    "subtitle": "Contactez-nous pour discuter de votre prochain projet.",
+    "phone": "+261 32 86 456 74",
+    "email": "contact@iago.tech",
+    "location": "Antsirabe, Madagascar"
+  }
+}
