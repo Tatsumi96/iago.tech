@@ -25,7 +25,7 @@ export default function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
-          <div className="max-w-2xl order-2 lg:order-1">
+          <div className="max-w-2xl order-1">
             <RevealOnScroll delay={0.1}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
                 {t('title')}
@@ -57,7 +57,7 @@ export default function HeroSection() {
             </RevealOnScroll>
           </div>
 
-          <div className="relative order-1 lg:order-2 w-full">
+          <div className="relative order-2 w-full">
             <RevealOnScroll delay={0.4} direction="left" className="w-full">
               <FigureImage
                 src="/images/hero-dev.jpg"

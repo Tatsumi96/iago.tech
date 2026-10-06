@@ -46,7 +46,7 @@ export default function Header() {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         scrolled
-          ? 'border-b border-border/40 bg-background/95 shadow-md backdrop-blur supports-[backdrop-filter]:bg-background/80'
+          ? 'border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'
           : 'border-b border-transparent bg-background/60 backdrop-blur-sm supports-[backdrop-filter]:bg-background/40'
       )}
     >
