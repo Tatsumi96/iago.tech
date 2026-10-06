@@ -6,3 +6,8 @@ export const CONTACT_FACEBOOK = "https://www.facebook.com/profile.php?id=6159531
 export const CONTACT_MESSENGER = "https://m.me/61595319473016";
 export const COMPANY_NAME = "i'ago Tech";
 export const COMPANY_ADDRESS = "Antsirabe, Madagascar";
+
+// Domaine de production — surchargeable via NEXT_PUBLIC_SITE_URL sur Vercel.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://iago.tech";
+export const SITE_LOGO = `${SITE_URL}/logos/iago-tech-logo-clair.svg`;
+export const SITE_OG_IMAGE = `${SITE_URL}/images/team.jpg`;
