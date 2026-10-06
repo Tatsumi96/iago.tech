@@ -12,7 +12,7 @@ import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: "i'ago Tech — Penser plus loin, bâtir ensemble",
+    default: "i'ago Tech - Penser plus loin, bâtir ensemble",
     template: "%s | i'ago Tech",
   },
   description:
