@@ -1,54 +1,76 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { RevealOnScroll } from '../animations/RevealOnScroll';
-import Link from 'next/link';
+import FigureImage from '../ui/figure-image';
 
 export default function HeroSection() {
   const t = useTranslations('Hero');
 
   return (
-    <section className="relative pt-24 pb-16 md:pt-32 md:pb-24 overflow-hidden" id="home">
-      {/* Brand Motif: One blue circle per page, never cut */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary rounded-full opacity-5 pointer-events-none -z-10" />
-      
-      <div className="container px-4 md:px-8 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <div className="max-w-2xl">
-          <RevealOnScroll delay={0.1}>
-            <h1 className="text-4xl sm:text-5xl lg:text-[64px] leading-tight font-heading font-extrabold mb-6 text-foreground">
-              {t('title')}
-            </h1>
-          </RevealOnScroll>
+    <section className="relative min-h-[calc(100vh-4rem)] flex items-center py-8 lg:py-12 overflow-hidden" id="home">
+      <div aria-hidden className="absolute inset-0">
+        <Image
+          src="/images/team.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-[0.12] dark:opacity-[0.08]"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+      </div>
+      <div className="relative z-10 container mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
           
-          <RevealOnScroll delay={0.2}>
-            <p className="text-lg md:text-[20px] text-muted-foreground mb-8 leading-[1.6]">
-              {t('subtitle')}
-            </p>
-          </RevealOnScroll>
-          
-          <RevealOnScroll delay={0.3} className="flex flex-wrap gap-4">
-            <Button size="lg" className="rounded-full font-medium" asChild>
-              <Link href="#contact">
-                {t('cta')}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="rounded-full font-medium" asChild>
-              <Link href="#services">{t('secondaryCta')}</Link>
-            </Button>
-          </RevealOnScroll>
-        </div>
+          <div className="max-w-2xl order-2 lg:order-1">
+            <RevealOnScroll delay={0.1}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
+                {t('title')}
+              </h1>
+            </RevealOnScroll>
+            
+            <RevealOnScroll delay={0.2}>
+              <p className="text-lg md:text-xl text-muted-foreground mb-10 leading-relaxed max-w-xl">
+                {t('subtitle')}
+              </p>
+            </RevealOnScroll>
+            
+            <RevealOnScroll delay={0.3}>
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <a 
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 rounded-md w-full sm:w-auto"
+                >
+                  {t('cta')}
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+                <a 
+                  href="#services"
+                  className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground rounded-md w-full sm:w-auto"
+                >
+                  {t('secondaryCta')}
+                </a>
+              </div>
+            </RevealOnScroll>
+          </div>
 
-        <RevealOnScroll delay={0.4} direction="left" className="relative h-[400px] lg:h-[600px] w-full rounded-[10px] overflow-hidden">
-          <Image 
-            src="/images/hero-workspace.png" 
-            alt="i'ago Tech Workspace" 
-            fill
-            className="object-cover"
-            priority
-          />
-        </RevealOnScroll>
+          <div className="relative order-1 lg:order-2 w-full">
+            <RevealOnScroll delay={0.4} direction="left" className="w-full">
+              <FigureImage
+                src="/images/hero-dev.jpg"
+                alt="Développeur i'ago Tech — code d'une solution digitale"
+                index="01"
+                caption="Intégrité"
+                className="h-[300px] sm:h-[400px] lg:h-[520px]"
+                priority
+              />
+            </RevealOnScroll>
+          </div>
+          
+        </div>
       </div>
     </section>
   );

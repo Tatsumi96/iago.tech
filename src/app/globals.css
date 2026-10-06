@@ -10,7 +10,6 @@
   --font-sans: var(--font-sans);
   --font-heading: var(--font-heading);
   --color-brand: var(--brand);
-  --color-brand-foreground: var(--brand-foreground);
   --color-encre: var(--encre);
   --color-brume: var(--brume);
   --color-acier: var(--acier);
@@ -45,46 +44,46 @@
   --acier: #D3DAF3;
   --pierre: #8A8D99;
 
-  --background: var(--brume);
+  --background: #FFFFFF;
   --foreground: var(--encre);
-  --card: #FFFFFF;
+  --card: #F9FAFB;
   --card-foreground: var(--encre);
   --popover: #FFFFFF;
   --popover-foreground: var(--encre);
   --primary: var(--brand);
   --primary-foreground: #FFFFFF;
-  --secondary: var(--acier);
-  --secondary-foreground: var(--encre);
-  --muted: var(--acier);
-  --muted-foreground: var(--pierre);
-  --accent: var(--acier);
-  --accent-foreground: var(--encre);
+  --secondary: #F3F4F6;
+  --secondary-foreground: #111827;
+  --muted: #F3F4F6;
+  --muted-foreground: #6B7280;
+  --accent: #F3F4F6;
+  --accent-foreground: #111827;
   --destructive: #ef4444;
-  --border: var(--acier);
-  --input: var(--acier);
+  --border: #E5E7EB;
+  --input: #E5E7EB;
   --ring: var(--brand);
   
-  --radius: 10px;
+  --radius: 8px;
 }
 
 .dark {
-  --background: var(--encre);
-  --foreground: var(--brume);
-  --card: var(--encre);
-  --card-foreground: var(--brume);
-  --popover: var(--encre);
-  --popover-foreground: var(--brume);
+  --background: #09090B;
+  --foreground: #FAFAFA;
+  --card: #18181B;
+  --card-foreground: #FAFAFA;
+  --popover: #09090B;
+  --popover-foreground: #FAFAFA;
   --primary: var(--brand);
   --primary-foreground: #FFFFFF;
-  --secondary: rgba(211, 218, 243, 0.1);
-  --secondary-foreground: var(--brume);
-  --muted: rgba(211, 218, 243, 0.1);
-  --muted-foreground: var(--pierre);
-  --accent: rgba(211, 218, 243, 0.1);
-  --accent-foreground: var(--brume);
-  --destructive: #ef4444;
-  --border: rgba(211, 218, 243, 0.1);
-  --input: rgba(211, 218, 243, 0.1);
+  --secondary: #27272A;
+  --secondary-foreground: #FAFAFA;
+  --muted: #27272A;
+  --muted-foreground: #A1A1AA;
+  --accent: #27272A;
+  --accent-foreground: #FAFAFA;
+  --destructive: #7f1d1d;
+  --border: #27272A;
+  --input: #27272A;
   --ring: var(--brand);
 }
 
@@ -92,10 +91,13 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+  
   html {
+    scroll-behavior: smooth;
     @apply font-sans;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased min-h-screen;
   }
 }

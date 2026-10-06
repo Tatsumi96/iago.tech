@@ -8,8 +8,8 @@
     "cta": "Voir le projet"
   },
   "Hero": {
-    "title": "Pensé pour avancer.",
-    "subtitle": "i'ago Tech conçoit des sites vitrines et des solutions web sur mesure pour propulser votre entreprise. Nous optimisons votre présence en ligne avec précision.",
+    "title": "Penser plus loin, bâtir ensemble.",
+    "subtitle": "i'ago Tech conçoit des solutions digitales sur mesure pour propulser votre entreprise. Sites, applications et bien plus — nous optimisons votre présence en ligne avec précision.",
     "cta": "Commencer",
     "secondaryCta": "Découvrir nos services"
   },
@@ -25,7 +25,7 @@
   "About": {
     "title": "Qui sommes-nous ?",
     "desc1": "i'ago Tech est une ESN basée à Madagascar, Antsirabe. Nous sommes passionnés par la création de solutions technologiques innovantes qui ont un réel impact.",
-    "desc2": "Notre philosophie : Un bleu, une encre. Le bleu apporte la confiance, l'encre apporte la précision. Le reste est de l'ordre."
+    "desc2": "Notre philosophie : penser plus loin, bâtir ensemble."
   },
   "Process": {
     "title": "Notre processus",
@@ -42,7 +42,7 @@
     "title": "Prêt à démarrer ?",
     "subtitle": "Contactez-nous pour discuter de votre prochain projet.",
     "phone": "+261 32 86 456 74",
-    "email": "contact@iago.tech",
+    "email": "santatraandrianirina57@gmail.com",
     "location": "Antsirabe, Madagascar"
   }
 }

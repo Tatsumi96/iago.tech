@@ -1,87 +1,221 @@
+"use client";
+
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { RevealOnScroll } from '../animations/RevealOnScroll';
-import { Button } from '@/components/ui/button';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import { CONTACT_EMAIL, CONTACT_PHONE, COMPANY_ADDRESS } from '@/lib/constants';
+import { Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import { FacebookIcon, MessengerIcon, WhatsAppIcon } from '@/components/icons/brand-icons';
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_FACEBOOK, CONTACT_MESSENGER, CONTACT_WHATSAPP, COMPANY_ADDRESS } from '@/lib/constants';
 
 export default function ContactSection() {
   const t = useTranslations('Contact');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const body = `Nom: ${name}\nEmail: ${email}\n\n${message}`;
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject || `Message de ${name}`)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  };
+
+  const whatsappPrefill = `https://wa.me/261328645674?text=${encodeURIComponent('Bonjour i\'ago Tech, je souhaite discuter de mon projet.')}`;
 
   return (
-    <section id="contact" className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
-      <div className="absolute -left-40 -top-40 w-[400px] h-[400px] bg-white opacity-[0.08] rounded-full blur-3xl pointer-events-none" />
-      
-      <div className="container px-4 md:px-8 mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    <section className="relative py-24 overflow-hidden" id="contact">
+      <div aria-hidden className="absolute inset-0">
+        <Image
+          src="/images/process-team.jpg"
+          alt=""
+          fill
+          className="object-cover opacity-[0.10] dark:opacity-[0.07]"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+      </div>
+      <div className="relative z-10 container mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
           <div>
             <RevealOnScroll>
-              <h2 className="text-3xl md:text-[44px] font-heading font-extrabold mb-6 leading-tight text-white">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">
                 {t('title')}
               </h2>
-            </RevealOnScroll>
-            <RevealOnScroll delay={0.1}>
-              <p className="text-xl text-primary-foreground/90 mb-12">
+              <p className="text-lg text-muted-foreground mb-12 max-w-md">
                 {t('subtitle')}
               </p>
             </RevealOnScroll>
-            
-            <div className="space-y-6">
-              <RevealOnScroll delay={0.2} className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                  <Phone className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/70 uppercase tracking-wider font-semibold">Téléphone</p>
-                  <a href={`tel:${CONTACT_PHONE}`} className="text-lg font-medium text-white hover:underline">{CONTACT_PHONE}</a>
+
+            <div className="flex flex-col gap-8">
+              <RevealOnScroll delay={0.1}>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-muted rounded-lg text-foreground">
+                    <Phone size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Téléphone / WhatsApp</h3>
+                    <a href={`tel:${CONTACT_PHONE.replace(/\s+/g, '')}`} className="text-muted-foreground hover:text-foreground transition-colors block">
+                      {CONTACT_PHONE}
+                    </a>
+                    <a
+                      href={whatsappPrefill}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-2 text-sm font-medium text-[#25D366] hover:underline"
+                    >
+                      <WhatsAppIcon size={16} />
+                      Discuter sur WhatsApp
+                    </a>
+                  </div>
                 </div>
               </RevealOnScroll>
-              
-              <RevealOnScroll delay={0.3} className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/70 uppercase tracking-wider font-semibold">Email</p>
-                  <a href={`mailto:${CONTACT_EMAIL}`} className="text-lg font-medium text-white hover:underline">{CONTACT_EMAIL}</a>
+
+              <RevealOnScroll delay={0.2}>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-muted rounded-lg text-foreground">
+                    <Mail size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Email</h3>
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-muted-foreground hover:text-foreground transition-colors break-all">
+                      {CONTACT_EMAIL}
+                    </a>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="inline-flex items-center gap-2 mt-2 text-sm font-medium text-foreground hover:underline"
+                    >
+                      <Mail size={16} />
+                      Envoyer un email
+                    </a>
+                  </div>
                 </div>
               </RevealOnScroll>
-              
-              <RevealOnScroll delay={0.4} className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-white" />
+
+              <RevealOnScroll delay={0.25}>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-muted rounded-lg text-[#1877F2]">
+                    <FacebookIcon size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Facebook</h3>
+                    <div className="flex flex-wrap items-center gap-4 mt-1">
+                      <a
+                        href={CONTACT_FACEBOOK}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-[#1877F2] transition-colors"
+                      >
+                        <FacebookIcon size={16} />
+                        Voir la page Facebook
+                      </a>
+                      <a
+                        href={CONTACT_MESSENGER}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-[#0099FF] transition-colors"
+                      >
+                        <MessengerIcon size={16} />
+                        Messenger
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm text-primary-foreground/70 uppercase tracking-wider font-semibold">Adresse</p>
-                  <p className="text-lg font-medium text-white">{COMPANY_ADDRESS}</p>
+              </RevealOnScroll>
+
+              <RevealOnScroll delay={0.3}>
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-muted rounded-lg text-foreground">
+                    <MapPin size={24} />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold mb-1">Adresse</h3>
+                    <p className="text-muted-foreground">{COMPANY_ADDRESS}</p>
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>
           </div>
-          
+
           <RevealOnScroll delay={0.2} direction="left">
-            <div className="bg-background text-foreground p-8 rounded-[10px] shadow-lg border border-border/50">
-              <form className="space-y-6">
+            <div className="bg-card border border-border rounded-2xl p-8 shadow-sm">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
+                  <div className="flex flex-col gap-2">
                     <label htmlFor="name" className="text-sm font-medium">Nom</label>
-                    <input type="text" id="name" className="w-full flex h-11 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Votre nom" />
+                    <input 
+                      type="text" 
+                      id="name" 
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Votre nom" 
+                      className="flex h-12 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    />
                   </div>
-                  <div className="space-y-2">
+                  <div className="flex flex-col gap-2">
                     <label htmlFor="email" className="text-sm font-medium">Email</label>
-                    <input type="email" id="email" className="w-full flex h-11 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="votre@email.com" />
+                    <input 
+                      type="email" 
+                      id="email" 
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="votre@email.com" 
+                      className="flex h-12 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium">Message</label>
-                  <textarea id="message" rows={4} className="w-full flex rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Comment pouvons-nous vous aider ?" />
+                
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="subject" className="text-sm font-medium">Sujet</label>
+                  <input 
+                    type="text" 
+                    id="subject" 
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                    placeholder="Le sujet de votre message" 
+                    className="flex h-12 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                  />
                 </div>
-                <Button size="lg" className="w-full rounded-md font-medium group">
-                  Envoyer le message
-                  <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </Button>
+
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="text-sm font-medium">Message</label>
+                  <textarea 
+                    id="message" 
+                    required
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Comment pouvons-nous vous aider ?" 
+                    rows={5}
+                    className="flex min-h-[120px] w-full rounded-md border border-input bg-transparent px-3 py-3 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring resize-y"
+                  ></textarea>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-3 mt-2">
+                  <button 
+                    type="submit"
+                    className="inline-flex flex-1 items-center justify-center gap-2 px-8 py-4 text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 rounded-md"
+                  >
+                    Envoyer par email
+                    <ArrowRight size={16} />
+                  </button>
+                  <a
+                    href={CONTACT_WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 px-8 py-4 text-sm font-medium transition-colors bg-[#25D366] text-white hover:bg-[#25D366]/90 rounded-md"
+                  >
+                    <WhatsAppIcon size={16} />
+                    WhatsApp
+                  </a>
+                </div>
               </form>
             </div>
           </RevealOnScroll>
+
         </div>
       </div>
     </section>

@@ -2,7 +2,8 @@
 
 import { useTranslations } from 'next-intl';
 import { usePathname, useRouter } from '@/i18n/routing';
-import { Button } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,11 +28,9 @@ export default function LanguageSwitcher() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <Globe className="h-4 w-4" />
-          <span className="sr-only">Changer de langue</span>
-        </Button>
+      <DropdownMenuTrigger className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "rounded-full")}>
+        <Globe className="h-4 w-4" />
+        <span className="sr-only">Changer de langue</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={() => switchLocale('fr')}>

@@ -17,15 +17,16 @@ export function RevealOnScroll({
   direction = "up"
 }: RevealOnScrollProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   const getVariants = () => {
     switch(direction) {
-      case "up": return { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } };
-      case "down": return { hidden: { opacity: 0, y: -30 }, visible: { opacity: 1, y: 0 } };
-      case "left": return { hidden: { opacity: 0, x: 30 }, visible: { opacity: 1, x: 0 } };
-      case "right": return { hidden: { opacity: 0, x: -30 }, visible: { opacity: 1, x: 0 } };
+      case "up": return { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
+      case "down": return { hidden: { opacity: 0, y: -20 }, visible: { opacity: 1, y: 0 } };
+      case "left": return { hidden: { opacity: 0, x: 20 }, visible: { opacity: 1, x: 0 } };
+      case "right": return { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0 } };
       case "none": return { hidden: { opacity: 0 }, visible: { opacity: 1 } };
+      default: return { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } };
     }
   };
 
@@ -35,7 +36,7 @@ export function RevealOnScroll({
       variants={getVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className={className}
     >
       {children}

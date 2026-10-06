@@ -5,7 +5,8 @@ import ProcessSection from '@/components/sections/ProcessSection';
 import ContactSection from '@/components/sections/ContactSection';
 import { setRequestLocale } from 'next-intl/server';
 
-export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   setRequestLocale(locale);
 
   return (
