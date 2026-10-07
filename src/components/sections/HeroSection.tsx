@@ -1,30 +1,37 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { RevealOnScroll } from '../animations/RevealOnScroll';
+import { useTheme } from '../layout/ThemeProvider';
 import FigureImage from '../ui/figure-image';
 
 export default function HeroSection() {
   const t = useTranslations('Hero');
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Une seule image affichée (pas de doublon masqué en CSS) : pas d'avertissement
+  // `sizes` et un seul fichier téléchargé par thème.
+  const bgSrc =
+    mounted && resolvedTheme === 'dark'
+      ? '/images/hero-background.jpg'
+      : '/images/services-analytics.jpg';
 
   return (
     <section className="relative min-h-screen flex items-center pt-24 md:pt-28 pb-8 lg:pb-12 overflow-hidden" id="home">
       <div aria-hidden className="absolute inset-0">
         <Image
-          src="/images/services-analytics.jpg"
+          src={bgSrc}
           alt=""
           fill
-          className="object-cover opacity-40 dark:hidden"
-          priority
-          sizes="100vw"
-        />
-        <Image
-          src="/images/hero-background.jpg"
-          alt=""
-          fill
-          className="hidden object-cover opacity-40 dark:block"
+          className="object-cover opacity-40"
           priority
           sizes="100vw"
         />
