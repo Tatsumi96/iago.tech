@@ -28,13 +28,14 @@ export default function ContactSection() {
     <section className="relative py-24 overflow-hidden" id="contact">
       <div aria-hidden className="absolute inset-0">
         <Image
-          src="/images/process-team.jpg"
+          src="/images/contact-background.jpg"
           alt=""
           fill
-          className="object-cover opacity-[0.10] dark:opacity-[0.07]"
+          className="object-cover opacity-35 dark:opacity-30"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+        <div className="absolute inset-0 bg-brand/[0.10] dark:bg-brand/[0.18]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/60 to-background dark:from-background dark:via-background/80" />
       </div>
       <div className="relative z-10 container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">

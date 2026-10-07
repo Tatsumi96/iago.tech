@@ -24,7 +24,7 @@ export default function Header() {
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 16);
+      setScrolled(window.scrollY > 24);
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -41,22 +41,27 @@ export default function Header() {
     { name: t('process'), href: '#process' },
   ];
 
+  // Fusionné avec le hero tant qu'on est en haut : transparent, sans bordure ni flou.
+  // Devient une vraie topbar (fond opaque + blur + bordure + ombre) dès le scroll,
+  // ou quand le menu mobile est ouvert pour rester lisible.
+  const solid = scrolled || mobileMenuOpen;
+
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        scrolled
-          ? 'border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80'
-          : 'border-b border-transparent bg-background/60 backdrop-blur-sm supports-[backdrop-filter]:bg-background/40'
+        'fixed inset-x-0 top-0 z-50 w-full transition-all duration-300',
+        solid
+          ? 'border-b border-border bg-background/85 shadow-[0_8px_30px_-12px_rgba(0,0,0,0.15)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/75'
+          : 'border-b border-transparent bg-transparent'
       )}
     >
       <div className={cn(
         'container flex items-center px-4 md:px-8 mx-auto justify-between transition-all duration-300',
-        scrolled ? 'h-14' : 'h-16 md:h-20'
+        solid ? 'h-14 md:h-16' : 'h-16 md:h-20'
       )}>
         <Link href="/" className="flex items-center gap-2">
           {mounted ? (
-            <Image src={logoSrc} alt="i'ago Tech Logo" width={140} height={40} className={cn('m-2 w-auto object-contain transition-all duration-300', scrolled ? 'h-8' : 'h-12')} priority />
+            <Image src={logoSrc} alt="i'ago Tech Logo" width={140} height={40} className={cn('m-2 w-auto object-contain transition-all duration-300', solid ? 'h-8 md:h-9' : 'h-10 md:h-12')} priority />
           ) : (
             <div className="w-[100px] h-[32px] bg-muted/50 rounded animate-pulse" />
           )}
@@ -107,7 +112,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 right-0 p-4 bg-background border-b border-border shadow-lg flex flex-col gap-4 md:hidden">
+        <div className="absolute top-full left-0 right-0 p-4 bg-background/95 backdrop-blur-xl border-b border-border shadow-lg flex flex-col gap-4 md:hidden">
           {navLinks.map((link) => (
             <a 
               key={link.name} 

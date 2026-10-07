@@ -10,17 +10,26 @@ export default function HeroSection() {
   const t = useTranslations('Hero');
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] flex items-center py-8 lg:py-12 overflow-hidden" id="home">
+    <section className="relative min-h-screen flex items-center pt-24 md:pt-28 pb-8 lg:pb-12 overflow-hidden" id="home">
       <div aria-hidden className="absolute inset-0">
         <Image
-          src="/images/team.jpg"
+          src="/images/services-analytics.jpg"
           alt=""
           fill
-          className="object-cover opacity-[0.12] dark:opacity-[0.08]"
+          className="object-cover opacity-40 dark:hidden"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/80 to-background" />
+        <Image
+          src="/images/hero-background.jpg"
+          alt=""
+          fill
+          className="hidden object-cover opacity-40 dark:block"
+          priority
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-brand/[0.10] dark:bg-brand/[0.18]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/65 to-background dark:from-background/60 dark:via-background/80" />
       </div>
       <div className="relative z-10 container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
