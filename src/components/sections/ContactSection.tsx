@@ -25,7 +25,10 @@ export default function ContactSection() {
   const whatsappPrefill = `https://wa.me/261328645674?text=${encodeURIComponent('Bonjour i\'ago Tech, je souhaite discuter de mon projet.')}`;
 
   return (
-    <section className="relative py-24 overflow-hidden" id="contact">
+    <section className="relative py-24 md:py-32 overflow-hidden" id="contact">
+      <span aria-hidden className="ghost-num-light font-heading pointer-events-none absolute top-6 right-2 z-10 text-[7rem] leading-none font-extrabold select-none md:right-8 md:text-[11rem]">
+        04
+      </span>
       <div aria-hidden className="absolute inset-0">
         <Image
           src="/images/contact-background.jpg"

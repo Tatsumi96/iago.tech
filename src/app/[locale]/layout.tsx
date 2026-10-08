@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { Space_Grotesk, Inter } from 'next/font/google';
+import { Archivo, Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/layout/ThemeProvider';
 import { ThemeScript } from '@/components/layout/ThemeScript';
 import '../globals.css';
@@ -84,10 +84,10 @@ export async function generateMetadata({
   };
 }
 
-const spaceGrotesk = Space_Grotesk({
+const archivo = Archivo({
   subsets: ['latin'],
   variable: '--font-heading',
-  weight: ['500', '600', '700'],
+  weight: ['500', '600', '700', '800'],
 });
 
 const inter = Inter({
@@ -116,7 +116,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${inter.variable} ${spaceGrotesk.variable} antialiased`} suppressHydrationWarning>
+    <html lang={locale} className={`${inter.variable} ${archivo.variable} antialiased`} suppressHydrationWarning>
       <body className="min-h-screen bg-background text-foreground flex flex-col font-sans">
         <ThemeScript />
         <JsonLd />

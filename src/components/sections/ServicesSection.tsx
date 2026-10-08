@@ -30,8 +30,13 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section className="py-24 bg-muted/30" id="services">
-      <div className="container mx-auto px-4 md:px-8">
+    <section className="relative overflow-hidden py-24 md:py-32" id="services">
+      {/* Identité blueprint : trame de points charte, estompée */}
+      <div aria-hidden className="bg-dots absolute inset-0 [mask-image:linear-gradient(to_bottom,black_20%,transparent_90%)] dark:opacity-70" />
+      <span aria-hidden className="ghost-num font-heading pointer-events-none absolute -top-4 right-2 text-[7rem] leading-none font-extrabold select-none md:right-8 md:text-[11rem]">
+        01
+      </span>
+      <div className="relative container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           <div>

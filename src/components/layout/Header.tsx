@@ -31,10 +31,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const logoSrc = mounted && resolvedTheme === 'dark' 
-    ? '/logos/iago-tech-logo-sombre.svg' 
-    : '/logos/iago-tech-logo-clair.svg';
-
   const navLinks = [
     { name: t('services'), href: '#services' },
     { name: t('about'), href: '#about' },
@@ -45,6 +41,11 @@ export default function Header() {
   // Devient une vraie topbar (fond opaque + blur + bordure + ombre) dès le scroll,
   // ou quand le menu mobile est ouvert pour rester lisible.
   const solid = scrolled || mobileMenuOpen;
+
+  // Le hero suit le thème (clair en light, cinéma en dark) : logo du thème.
+  const logoSrc = mounted && resolvedTheme === 'dark'
+    ? '/logos/iago-tech-logo-sombre.svg'
+    : '/logos/iago-tech-logo-clair.svg';
 
   return (
     <header
@@ -73,14 +74,19 @@ export default function Header() {
             <a 
               key={link.name} 
               href={link.href} 
-              className="transition-colors hover:text-primary text-muted-foreground hover:text-foreground"
+              className={cn(
+                "transition-colors hover:text-primary",
+                solid
+                  ? "text-muted-foreground hover:text-foreground"
+                  : "text-encre/70 hover:text-encre dark:text-white/70 dark:hover:text-white"
+              )}
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className={cn("hidden md:flex items-center gap-4", !solid && "text-encre dark:text-white")}>
           <div className="flex items-center gap-1 border-r border-border pr-4">
             <ModeToggle />
             <LanguageSwitcher />
@@ -97,12 +103,12 @@ export default function Header() {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className={cn("flex md:hidden items-center gap-2", !solid && "text-encre dark:text-white")}>
           <ModeToggle />
           <LanguageSwitcher />
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-foreground focus:outline-none"
+            className={cn("p-2 focus:outline-none", solid ? "text-foreground" : "text-encre dark:text-white")}
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

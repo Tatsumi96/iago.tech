@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -63,7 +63,7 @@
   --input: #E5E7EB;
   --ring: var(--brand);
   
-  --radius: 8px;
+  --radius: 10px;
 }
 
 .dark {
@@ -100,4 +100,38 @@
   body {
     @apply bg-background text-foreground antialiased min-h-screen;
   }
+
+  /* Charte : Archivo pour tous les titres, Inter pour le corps */
+  h1, h2, h3 {
+    @apply font-heading;
+  }
+}
+
+/* ——— Identités de section : motifs charte, zéro aplat, zéro glow ——— */
+@utility bg-dots {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--brand) 24%, transparent) 1.2px,
+    transparent 1.3px
+  );
+  background-size: 22px 22px;
+}
+
+/* Trame diagonale hairline — texture mate, zéro glow */
+@utility bg-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in srgb, var(--border) 90%, transparent) 0 1px,
+    transparent 1px 11px
+  );
+}
+
+@utility ghost-num {
+  color: transparent;
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--pierre) 55%, transparent);
+}
+
+@utility ghost-num-light {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.35);
 }
