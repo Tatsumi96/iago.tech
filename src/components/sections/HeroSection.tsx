@@ -96,7 +96,7 @@ export default function HeroSection() {
         <motion.img
           src="/images/hero-background.jpg"
           alt=""
-          className="h-full w-full object-cover opacity-30 dark:hidden"
+          className="h-full w-full object-cover opacity-70 dark:hidden"
           initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
           transition={{ duration: reduceMotion ? 0 : 8, ease: 'linear' }}
