@@ -1,20 +1,24 @@
 "use client";
 
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { RevealOnScroll } from '../animations/RevealOnScroll';
 
 /**
- * Bandeau "Ils nous font confiance" — version temporaire.
- * Logos fictifs en texte simple, faciles à remplacer par les vrais
- * <Image> quand le client les enverra.
- * TODO: remplacer PLACEHOLDERS par les vrais logos (next/image).
+ * Bandeau "Ils nous font confiance".
+ * - Logos image : fichiers dans `public/logos/` (ASJA ✔, Ariel ⏳ en attente
+ *   du fichier client — ajouter `logo: '/logos/ariel-hebergement.webp'`
+ *   + `href: 'https://ariel-hebergement.com'` à l'entrée ci-dessous).
+ * - Agence Feu Follet : volontairement en texte stylé (choix design).
  */
-const PLACEHOLDERS = [
-  { name: 'NOVATECH', style: 'font-extrabold tracking-tight' },
-  { name: 'Mada Digital', style: 'font-heading font-bold italic' },
-  { name: 'TSARA&Co', style: 'font-mono font-medium tracking-[0.18em]' },
-  { name: 'Zara Agency', style: 'font-semibold tracking-tight' },
-  { name: 'KOBA+', style: 'font-heading font-extrabold tracking-[0.12em]' },
+const CLIENTS = [
+  {
+    name: 'Université ASJA',
+    logo: '/logos/asja-university.webp',
+    href: 'https://asjaweb.com',
+  },
+  { name: 'Ariel Hébergement', style: 'font-extrabold tracking-tight' },
+  { name: 'Agence Feu Follet', style: 'font-heading font-extrabold italic' },
 ];
 
 export default function TrustSection() {
@@ -30,14 +34,36 @@ export default function TrustSection() {
         </RevealOnScroll>
         <RevealOnScroll delay={0.1}>
           <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {PLACEHOLDERS.map((logo) => (
+            {CLIENTS.map((logo) => (
               <li
                 key={logo.name}
-                aria-label={`Logo ${logo.name} (temporaire)`}
-                title="Logo temporaire — en attente des vrais visuels"
-                className={`text-lg text-foreground/35 transition-opacity duration-300 hover:opacity-100 hover:text-foreground/70 md:text-xl dark:text-white/30 dark:hover:text-white/70 ${logo.style}`}
+                aria-label={`Client : ${logo.name}`}
+                title={logo.name}
+                className="flex items-center"
               >
-                {logo.name}
+                {'logo' in logo && logo.logo ? (
+                  <a
+                    href={logo.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${logo.name} — visiter le site`}
+                    className="opacity-70 transition-opacity duration-300 hover:opacity-100"
+                  >
+                    <Image
+                      src={logo.logo}
+                      alt={`Logo ${logo.name}`}
+                      width={56}
+                      height={56}
+                      className="h-12 w-auto object-contain md:h-14"
+                    />
+                  </a>
+                ) : (
+                  <span
+                    className={`text-lg text-foreground/35 transition-opacity duration-300 hover:opacity-100 hover:text-foreground/70 md:text-xl dark:text-white/30 dark:hover:text-white/70 ${'style' in logo ? logo.style : ''}`}
+                  >
+                    {logo.name}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
