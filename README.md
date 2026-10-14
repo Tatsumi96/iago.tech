@@ -19,12 +19,13 @@ L'architecture du projet a été pensée pour être évolutive, lisible et perfo
 
 ## Technologies Utilisées
 
-- **Framework** : [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework** : [Next.js 16](https://nextjs.org/) (App Router)
 - **Styling** : [Tailwind CSS v4](https://tailwindcss.com/)
 - **UI Components** : [shadcn/ui](https://ui.shadcn.com/)
 - **Animations** : [Framer Motion](https://www.framer.com/motion/)
 - **Icônes** : [Lucide React](https://lucide.dev/)
-- **Internationalisation** : [next-intl](https://next-intl-docs.vercel.app/)
+- **Internationalisation** : [next-intl](https://next-intl-docs.vercel.app/) (FR / EN)
+- **Hébergement** : [Cloudflare Workers](https://workers.cloudflare.com/) via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare)
 
 ## Installation & Lancement
 
@@ -34,27 +35,48 @@ L'architecture du projet a été pensée pour être évolutive, lisible et perfo
    cd iago-tech
    ```
 
-2. **Installer les dépendances**
+2. **Installer les dépendances** (gestionnaire requis : `pnpm ≥ 9`)
    ```bash
-   npm install
+   pnpm install
    ```
 
 3. **Lancer le serveur de développement**
    ```bash
-   npm run dev
+   pnpm run dev
    ```
    Le site sera accessible sur `http://localhost:3000`.
 
 ## Scripts Disponibles
 
-- `npm run dev` : Lance le serveur en mode développement.
-- `npm run build` : Compile l'application pour la production (optimisation SEO et assets).
-- `npm run start` : Lance l'application compilée en production.
-- `npm run lint` : Exécute ESLint pour vérifier la qualité du code.
+- `pnpm run dev` : Lance le serveur Next.js en mode développement.
+- `pnpm run build` : Compile l'application Next.js pour la production.
+  > ⚠️ Doit rester `next build` uniquement : `opennextjs-cloudflare build` l'appelle déjà en interne (risque de boucle infinie sinon).
+- `pnpm run start` : Lance l'application compilée en production (Node.js).
+- `pnpm run lint` : Exécute ESLint pour vérifier la qualité du code.
+- `pnpm run preview` : Build OpenNext + aperçu local dans l'environnement Cloudflare Workers (Miniflare).
+- `pnpm run deploy` : Build OpenNext + **déploiement en production** sur Cloudflare Workers.
+- `pnpm run upload` : Build OpenNext + upload sans activer (validation avant promotion).
+- `pnpm run cf-typegen` : Génère les types des bindings Cloudflare (`cloudflare-env.d.ts`).
 
 ## Déploiement
 
-Le projet est prêt à être déployé sur des plateformes comme [Vercel](https://vercel.com/) ou via [Firebase App Hosting](https://firebase.google.com/docs/app-hosting).
+Le projet est déployé sur **[Cloudflare Workers](https://workers.cloudflare.com/)** via [OpenNext](https://opennext.js.org/cloudflare), depuis la machine locale :
+
+```bash
+pnpm run deploy
+```
+
+📖 **Guide complet pour l'équipe : voir [DEPLOYMENT.md](./DEPLOYMENT.md)**
+(prérequis, configuration Wrangler, variables d'environnement, domaine personnalisé, email professionnel, dépannage, FAQ).
+
+## Contact
+
+- **Email public** : `info@iago-tech.com` (section Contact, footer, JSON-LD) — redirigé via [Cloudflare Email Routing](https://developers.cloudflare.com/email-routing/) vers la boîte de l'équipe. Procédure de configuration dans le [DEPLOYMENT.md](./DEPLOYMENT.md#email-professionnel-cloudflare-email-routing).
+
+## SEO
+
+- `src/app/robots.ts` → `/robots.txt` : règles pour les moteurs de recherche (`Crawl-delay: 10`), blocage des bots IA d'entraînement et des scrapers SEO agressifs.
+- `src/app/sitemap.ts` → `/sitemap.xml` : pages `/fr` et `/en` + sections avec anchors (`#services`, `#about`, `#process`, `#contact`), alternates `hreflang` et image OG.
 
 ## Charte Graphique (Résumé)
 
